@@ -3,16 +3,18 @@ module seven_seg_counter
     input clk,
     input [3:0] SW,
     output reg[6:0] seven_seg1,
-    output reg[6:0] seven_seg0
-    //output [3:0] LED
+    output reg[6:0] seven_seg0,
+    output [0:3] LED
 );
 reg[24:0] clock_counter;
 wire[24:0] max_clock_count;
-reg[8:0] seg_counter;
+reg[10:0] seg_counter;
+wire[10:0] max_seg_count;
 wire [6:0] two_digit;
 wire [3:0] tens, ones;
 wire [6:0] seg0,seg1;
-assign max_clock_count = 25'd12500000;
+assign max_clock_count = 25'd2500000;
+assign max_seg_count = 11'd1600;
 
 assign reset = | SW;
 always @(posedge clk)begin
@@ -30,13 +32,15 @@ end
 
 always @(posedge clk) begin
     
-    if(reset)
-        seg_counter <= 9'd0;
+    if(reset | seg_counter >= max_seg_count)
+        seg_counter <= 11'd0;
     else if(clock_counter >= max_clock_count)
-        seg_counter <= seg_counter + 9'd1;
+        seg_counter <= seg_counter + 11'd1;
     else
         seg_counter <= seg_counter;
 end
+
+assign LED = seg_counter / 100;
 
 assign two_digit = seg_counter % 100;
 assign tens = two_digit / 10;
