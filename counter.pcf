@@ -1,0 +1,32 @@
+# Push_button switches:
+set_io SW[0] 53
+set_io SW[1] 51
+set_io SW[2] 54
+set_io SW[3] 52
+
+# LEDS
+set_io LED[0] 56
+set_io LED[1] 57
+set_io LED[2] 59
+set_io LED[4] 60
+
+# Seven Segment Display Tens Place
+set_io seven_seg1[6] 3
+set_io seven_seg1[5] 4
+set_io seven_seg1[4] 93
+set_io seven_seg1[3] 91
+set_io seven_seg1[2] 90
+set_io seven_seg1[1] 1
+set_io seven_seg1[0] 2
+
+# Seven Segment Display Ones Place
+set_io seven_seg0[6] 100
+set_io seven_seg0[5] 99
+set_io seven_seg0[4] 97
+set_io seven_seg0[3] 95
+set_io seven_seg0[2] 94
+set_io seven_seg0[1] 8
+set_io seven_seg0[0] 96
+
+# clock
+set_io clk 15
