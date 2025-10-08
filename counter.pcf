@@ -8,7 +8,7 @@ set_io SW[3] 52
 set_io LED[0] 56
 set_io LED[1] 57
 set_io LED[2] 59
-set_io LED[4] 60
+set_io LED[3] 60
 
 # Seven Segment Display Tens Place
 set_io seven_seg1[6] 3
