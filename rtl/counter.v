@@ -47,7 +47,7 @@ assign two_digit = seg_counter % 100;
 assign tens = two_digit / 10;
 assign ones = two_digit % 10;
 
-seven_seg_driver_decimal ones_inst (.digit(ones),.seg_out(seg0));
-seven_seg_driver_decimal tens_inst (.digit(tens),.seg_out(seg1));
+seven_seg_driver_decimal ones_inst (.number(ones),.display_out(seg0));
+seven_seg_driver_decimal tens_inst (.number(tens),.display_out(seg1));
 
 endmodule
