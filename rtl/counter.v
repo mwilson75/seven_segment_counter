@@ -1,3 +1,4 @@
+`include "../seven_seg_driver/rtl/seven_seg_driver_decimal.v"
 module seven_seg_counter
 (
     input clk,
@@ -46,34 +47,7 @@ assign two_digit = seg_counter % 100;
 assign tens = two_digit / 10;
 assign ones = two_digit % 10;
 
-get_seven_seg ones_inst (.digit(ones),.seg_out(seg0));
-get_seven_seg tens_inst (.digit(tens),.seg_out(seg1));
-/* 
-always @(*) begin
-    
-end
-*/
-
-endmodule
-
-module get_seven_seg(
-    input [3:0] digit,
-    output reg[6:0] seg_out
-);
-always@(*) begin
-    seg_out = 7'd1;
-    case(digit)
-        4'h1 : seg_out = 7'b1001111;
-        4'h2 : seg_out = 7'b0010010;
-        4'h3 : seg_out = 7'b0000110;
-        4'h4 : seg_out = 7'b1001100;
-        4'h5 : seg_out = 7'b0100100;
-        4'h6 : seg_out = 7'b0100000;
-        4'h7 : seg_out = 7'b0001111;
-        4'h8 : seg_out = 7'b0000000;
-        4'h9 : seg_out = 7'b0001100;
-        4'h0 : seg_out = 7'b0000001;
-    endcase
-end
+seven_seg_driver_decimal ones_inst (.digit(ones),.seg_out(seg0));
+seven_seg_driver_decimal tens_inst (.digit(tens),.seg_out(seg1));
 
 endmodule
