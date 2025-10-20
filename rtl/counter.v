@@ -19,7 +19,7 @@ assign max_seg_count = 11'd1600;
 
 assign reset = | SW;
 always @(posedge clk)begin
-    if(reset | clock_counter >= max_clock_count)
+    if(reset | clock_counter >= max_clock_count-1)
         clock_counter <= 25'd0;
     else 
         clock_counter <= clock_counter + 25'd1;
@@ -33,9 +33,9 @@ end
 
 always @(posedge clk) begin
     
-    if(reset | seg_counter >= max_seg_count)
+    if(reset | seg_counter >= max_seg_count-1)
         seg_counter <= 11'd0;
-    else if(clock_counter >= max_clock_count)
+    else if(clock_counter >= max_clock_count-1)
         seg_counter <= seg_counter + 11'd1;
     else
         seg_counter <= seg_counter;
