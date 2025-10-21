@@ -1,5 +1,7 @@
 *
-!*.v
-!*.pcf
-!*.xcf
-!*.vhd
+!tb
+!rtl
+!constraints
+!tb/*
+!constraints/*
+!rtl/*
