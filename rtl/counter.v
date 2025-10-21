@@ -26,10 +26,8 @@ always @(posedge clk)begin
     
 end
 
-always @(posedge clk) begin
-    seven_seg0 <= seg0;
-    seven_seg1 <= seg1;
-end
+assign seven_seg0 = seg0;
+assign seven_seg1 = seg1;
 
 always @(posedge clk) begin
     
