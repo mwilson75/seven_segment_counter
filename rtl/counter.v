@@ -1,5 +1,6 @@
 `include "../seven_seg_driver/rtl/seven_seg_driver_decimal.v"
-module seven_seg_counter
+module seven_seg_counter #(parameter    MAX_CLOCK_COUNT = 25000000,
+                                        COUNTER_LIMIT = 1599)
 (
     input clk,
     input [3:0] SW,
@@ -8,18 +9,14 @@ module seven_seg_counter
     output [0:3] LED
 );
 reg[24:0] clock_counter;
-wire[24:0] max_clock_count;
 reg[10:0] seg_counter;
-wire[10:0] max_seg_count;
 wire [6:0] two_digit;
 wire [3:0] tens, ones;
 wire [6:0] seg0,seg1;
-assign max_clock_count = 25'd2500000;
-assign max_seg_count = 11'd1600;
 
 assign reset = | SW;
 always @(posedge clk)begin
-    if(reset | clock_counter >= max_clock_count-1)
+    if(reset | clock_counter >= MAX_CLOCK_COUNT-1)
         clock_counter <= 25'd0;
     else 
         clock_counter <= clock_counter + 25'd1;
@@ -31,9 +28,9 @@ assign seven_seg1 = seg1;
 
 always @(posedge clk) begin
     
-    if(reset | seg_counter >= max_seg_count-1)
+    if(reset | seg_counter >= COUNTER_LIMIT)
         seg_counter <= 11'd0;
-    else if(clock_counter >= max_clock_count-1)
+    else if(clock_counter >= MAX_CLOCK_COUNT-1)
         seg_counter <= seg_counter + 11'd1;
     else
         seg_counter <= seg_counter;
