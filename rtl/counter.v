@@ -1,11 +1,10 @@
-`include "../seven_seg_driver/rtl/seven_seg_driver_decimal.v"
 module seven_seg_counter #(parameter    MAX_CLOCK_COUNT = 25000000,
                                         COUNTER_LIMIT = 1599)
 (
     input clk,
     input [3:0] SW,
-    output reg[6:0] seven_seg1,
-    output reg[6:0] seven_seg0,
+    output [6:0] seven_seg1,
+    output [6:0] seven_seg0,
     output [0:3] LED
 );
 reg[24:0] clock_counter;
